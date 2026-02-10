@@ -92,7 +92,7 @@ export default function GraphViewer({ data, title, height = 500 }: GraphViewerPr
       ctx.translate(pan.x, pan.y);
       ctx.scale(zoom, zoom);
 
-      // Draw edges with THICK arrows and better colors
+      // Draw CURVED edges with THICK arrows and better colors
       data.edges.forEach(edge => {
         const from = nodePositions.get(edge.from);
         const to = nodePositions.get(edge.to);
@@ -114,21 +114,46 @@ export default function GraphViewer({ data, title, height = 500 }: GraphViewerPr
 
           const edgeColor = edgeColorMap[edge.type] || '#718096';
 
-          // Draw THICK line
+          // Calculate curve control point for smooth bezier curve
+          const dx = to.x - from.x;
+          const dy = to.y - from.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          // Control point offset (creates the curve)
+          const curveOffset = distance * 0.2; // 20% of distance for nice curve
+
+          // Perpendicular vector for curve direction
+          const midX = (from.x + to.x) / 2;
+          const midY = (from.y + to.y) / 2;
+          const perpX = -dy / distance;
+          const perpY = dx / distance;
+
+          // Control point (offset from midpoint)
+          const ctrlX = midX + perpX * curveOffset;
+          const ctrlY = midY + perpY * curveOffset;
+
+          // Draw THICK CURVED line using quadratic bezier
           ctx.strokeStyle = edgeColor;
-          ctx.lineWidth = Math.max(2, 3 / zoom); // Much thicker!
-          ctx.globalAlpha = 0.7; // More opaque
+          ctx.lineWidth = Math.max(2, 3 / zoom);
+          ctx.globalAlpha = 0.7;
           ctx.beginPath();
           ctx.moveTo(from.x, from.y);
-          ctx.lineTo(to.x, to.y);
+          ctx.quadraticCurveTo(ctrlX, ctrlY, to.x, to.y);
           ctx.stroke();
           ctx.globalAlpha = 1;
 
-          // Draw BIGGER arrow
-          const angle = Math.atan2(to.y - from.y, to.x - from.x);
-          const arrowSize = Math.max(8, 10 / zoom); // Bigger arrow!
-          const arrowX = to.x - Math.cos(angle) * 18;
-          const arrowY = to.y - Math.sin(angle) * 18;
+          // Draw BIGGER arrow at the end of curve
+          // Calculate tangent at end point for arrow direction
+          const t = 0.95; // Position along curve for arrow (95% to end)
+          const arrowX = (1 - t) * (1 - t) * from.x + 2 * (1 - t) * t * ctrlX + t * t * to.x;
+          const arrowY = (1 - t) * (1 - t) * from.y + 2 * (1 - t) * t * ctrlY + t * t * to.y;
+
+          // Derivative for tangent
+          const tangentX = 2 * (1 - t) * (ctrlX - from.x) + 2 * t * (to.x - ctrlX);
+          const tangentY = 2 * (1 - t) * (ctrlY - from.y) + 2 * t * (to.y - ctrlY);
+          const angle = Math.atan2(tangentY, tangentX);
+
+          const arrowSize = Math.max(8, 10 / zoom);
 
           ctx.fillStyle = edgeColor;
           ctx.beginPath();
