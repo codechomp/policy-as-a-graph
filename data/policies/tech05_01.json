@@ -1,0 +1,215 @@
+{
+  "id": "TECH05.01",
+  "name": "Logging Management Standard",
+  "organization": "American Express",
+  "type": "Technology Standard",
+  "version": "01-Nov-2025",
+  "statement": "The Logging Management Standard (TECH05.01) specifies requirements and supporting information for managing Information Technology (IT) and Cybersecurity controls related to American Express (AXP) logging management. It applies a risk-based assessment methodology proportionate to the technical or process vulnerabilities and accounts for threat behaviors to strengthen cybersecurity control implementation.",
+  "scope": "Production and non-production platforms, infrastructure, network, systems, and security solutions. Production and externally accessible applications.",
+  "responsibility": "American Express (AXP) Entity colleagues and Third Parties who own, manage and support AXP information resources.",
+  "exceptionCriteria": "To submit a request for a standard exception, utilize the Exceptions Management Process.",
+  "adoptionDate": "30-Jun-2015",
+  "adoptionSchedule": "Adoption of new or updated requirements is 90 days from most recent publication date, as documented in the footer, unless otherwise specified.",
+  "sections": [
+    {
+      "id": "general",
+      "name": "General Requirements",
+      "requirements": [
+        {
+          "id": "REQ-001",
+          "text": "Logging must be enabled to capture activity on all platforms, infrastructure, network, systems, applications, security solutions, or any other log sources required to support the specified capabilities.",
+          "category": "logging-enablement",
+          "mandatory": true,
+          "standards": []
+        }
+      ]
+    },
+    {
+      "id": "classification",
+      "name": "Classification",
+      "requirements": [
+        {
+          "id": "REQ-002",
+          "text": "Logs must be classified per the Information Security (IS) Information Management Standard (TECH02.01) and secured based upon their content.",
+          "category": "classification",
+          "mandatory": true,
+          "standards": ["TECH02.01"]
+        }
+      ]
+    },
+    {
+      "id": "retention",
+      "name": "Retention",
+      "requirements": [
+        {
+          "id": "REQ-003",
+          "text": "Security and Audit Logs must be forwarded to a centralized repository and retained for at least 12 months, with a minimum of 3 months online.",
+          "category": "retention",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["centralized-forwarding", "retention-12months", "online-3months"]
+        },
+        {
+          "id": "REQ-004",
+          "text": "Operational Logs should be retained according to the operational needs as defined by the information resource owner and support teams.",
+          "category": "retention",
+          "mandatory": false,
+          "standards": []
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "name": "Monitoring and Reporting",
+      "requirements": [
+        {
+          "id": "REQ-005",
+          "text": "Logs requiring review and analysis must be made available and integrated with appropriate processes. Frequency and method for review can vary depending on risk and requirements.",
+          "category": "monitoring",
+          "mandatory": true,
+          "standards": []
+        }
+      ]
+    },
+    {
+      "id": "time-zones",
+      "name": "Time and Zones",
+      "requirements": [
+        {
+          "id": "REQ-006",
+          "text": "System clocks not maintained by a hypervisor or cloud provider must enable time synchronization to maintain accurate time.",
+          "category": "time-sync",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["ntp-enabled"]
+        },
+        {
+          "id": "REQ-007",
+          "text": "Logs must include an accurate timestamp with time zone identification that enables automated processing.",
+          "category": "timestamp",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["timestamp-with-timezone"]
+        },
+        {
+          "id": "REQ-008",
+          "text": "It is recommended to set the time zone for systems to Coordinated Universal Time (UTC) except for end user devices.",
+          "category": "time-zone",
+          "mandatory": false,
+          "standards": [],
+          "controls": ["utc-timezone"]
+        }
+      ]
+    },
+    {
+      "id": "security-audit-logs",
+      "name": "Security and Audit Log Requirements",
+      "requirements": [
+        {
+          "id": "REQ-009",
+          "text": "Logs must be forwarded to a central repository.",
+          "category": "centralization",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["central-repository"]
+        },
+        {
+          "id": "REQ-010",
+          "text": "Logs must be protected from unauthorized modification or deletion.",
+          "category": "integrity",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["immutable-logs"]
+        },
+        {
+          "id": "REQ-011",
+          "text": "Logs must be restricted to authorized users.",
+          "category": "access-control",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["restricted-access"]
+        },
+        {
+          "id": "REQ-012",
+          "text": "Log settings, configuration, and delivery mechanisms must be protected from unauthorized deletion or modification.",
+          "category": "configuration-protection",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["protected-config"]
+        }
+      ]
+    },
+    {
+      "id": "event-record-attributes",
+      "name": "Event Record Attributes",
+      "requirements": [
+        {
+          "id": "REQ-013",
+          "text": "Event records must include: Timestamp (accurate and including zone information), Event Type, Identity or credential information, Unique Source Identifier, Severity or Level, Outcome/result/result code, Process or command line arguments, Unique session or transaction identifier, Network resources, Protocol Specific information.",
+          "category": "log-attributes",
+          "mandatory": true,
+          "standards": [],
+          "controls": ["required-attributes"]
+        }
+      ]
+    }
+  ],
+  "relatedPolicies": [
+    "TECH05",
+    "TECH02.01",
+    "TECH05.81",
+    "TECH08.01",
+    "TECH12.02",
+    "AEMP08",
+    "AEMP64",
+    "AEMP70"
+  ],
+  "relatedDocuments": [
+    "Record Retention Schedule (RRS)",
+    "IT Product Registry (ITPR)",
+    "Infrastructure Core Configurations Registry (ICCR)",
+    "Technology Glossary of Terms"
+  ],
+  "logSources": [
+    "Identity and Access Management",
+    "Directory Services",
+    "Identity Providers",
+    "Authentication and Authorization",
+    "Network Management and Infrastructure",
+    "Routers, Switches, Wireless",
+    "DHCP, DNS",
+    "Operating Systems",
+    "E-Mail and Web Servers",
+    "Virtualization, Cloud, and Orchestration",
+    "IaaS, PaaS, SaaS",
+    "Security Solutions",
+    "Firewalls, Anti-Virus, EDR",
+    "PKI and Secrets Management",
+    "Production Applications and APIs"
+  ],
+  "eventTypes": [
+    "Management of identities, users, accounts, groups, roles",
+    "Management of encryption keys, secrets, certificates",
+    "Management of network, storage, system resources",
+    "Access control lists or firewall rules changes",
+    "Security rules, filters, or policies changes",
+    "Authorization and authentication events",
+    "Privileged activity and command execution",
+    "System, service, device configuration changes",
+    "Production application behavior",
+    "Denied or blocked network or system activity",
+    "Abnormal termination or abend"
+  ],
+  "requiredAttributes": [
+    "Timestamp with zone information",
+    "Event Type",
+    "Identity or credential information",
+    "Unique Source Identifier (hostname, IP, instance ID)",
+    "Severity or Level",
+    "Outcome, result, and/or result code",
+    "Process or command line arguments",
+    "Unique session or transaction identifier",
+    "Network resources (hostname, ASN, IPs, ports, protocol, VLAN)",
+    "Protocol Specific (HTTP headers, cryptographic method)"
+  ]
+}

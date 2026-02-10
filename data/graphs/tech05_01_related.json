@@ -1,0 +1,195 @@
+{
+  "nodes": [
+    {
+      "id": "doc:tech05.01",
+      "type": "Document",
+      "label": "TECH05.01 Logging Management Standard",
+      "props": {
+        "version": "01-Nov-2025",
+        "organization": "American Express"
+      }
+    },
+    {
+      "id": "policy:tech05",
+      "type": "Policy",
+      "label": "TECH05 Architecture and Infrastructure Policy",
+      "props": {}
+    },
+    {
+      "id": "std:tech02.01",
+      "type": "Standard",
+      "label": "TECH02.01 Information Management Standard",
+      "props": {}
+    },
+    {
+      "id": "std:tech05.81",
+      "type": "Standard",
+      "label": "TECH05.81 Infrastructure Core Configuration Standard",
+      "props": {}
+    },
+    {
+      "id": "std:tech08.01",
+      "type": "Standard",
+      "label": "TECH08.01 Physical Access Standard",
+      "props": {}
+    },
+    {
+      "id": "std:tech12.02",
+      "type": "Standard",
+      "label": "TECH12.02 Information Security Incident Response Standard",
+      "props": {}
+    },
+    {
+      "id": "policy:aemp08",
+      "type": "Policy",
+      "label": "AEMP08 Record Risk Management Policy",
+      "props": {}
+    },
+    {
+      "id": "policy:aemp64",
+      "type": "Policy",
+      "label": "AEMP64 Information Security Management Policy",
+      "props": {}
+    },
+    {
+      "id": "policy:aemp70",
+      "type": "Policy",
+      "label": "AEMP70 Enterprise Data Management Operating Policy",
+      "props": {}
+    },
+    {
+      "id": "doc:rrs",
+      "type": "SupportingDoc",
+      "label": "Record Retention Schedule (RRS)",
+      "props": {}
+    },
+    {
+      "id": "doc:itpr",
+      "type": "SupportingDoc",
+      "label": "IT Product Registry (ITPR)",
+      "props": {}
+    },
+    {
+      "id": "doc:iccr",
+      "type": "SupportingDoc",
+      "label": "Infrastructure Core Configurations Registry (ICCR)",
+      "props": {}
+    },
+    {
+      "id": "doc:glossary",
+      "type": "SupportingDoc",
+      "label": "Technology Glossary of Terms",
+      "props": {}
+    },
+    {
+      "id": "tool:splunk",
+      "type": "Identifier",
+      "label": "Splunk / Enterprise Logging Framework",
+      "props": {}
+    },
+    {
+      "id": "std:pci-dss",
+      "type": "RegulatoryGuideline",
+      "label": "PCI DSS",
+      "props": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "doc:tech05.01",
+      "to": "policy:tech05",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech02.01",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech05.81",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech08.01",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech12.02",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "policy:aemp08",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "policy:aemp64",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "policy:aemp70",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "doc:rrs",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "doc:itpr",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "doc:iccr",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "doc:glossary",
+      "type": "relate_to",
+      "label": "relates to"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech02.01",
+      "type": "mention",
+      "label": "mentions"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:tech12.02",
+      "type": "mention",
+      "label": "mentions"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "tool:splunk",
+      "type": "mention",
+      "label": "mentions"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "std:pci-dss",
+      "type": "mention",
+      "label": "mentions"
+    }
+  ]
+}

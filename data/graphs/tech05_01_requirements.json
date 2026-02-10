@@ -1,0 +1,404 @@
+{
+  "nodes": [
+    {
+      "id": "doc:tech05.01",
+      "type": "Document",
+      "label": "TECH05.01",
+      "props": {}
+    },
+    {
+      "id": "sec:general",
+      "type": "Section",
+      "label": "General Requirements",
+      "props": {}
+    },
+    {
+      "id": "sec:classification",
+      "type": "Section",
+      "label": "Classification",
+      "props": {}
+    },
+    {
+      "id": "sec:retention",
+      "type": "Section",
+      "label": "Retention",
+      "props": {}
+    },
+    {
+      "id": "sec:monitoring",
+      "type": "Section",
+      "label": "Monitoring and Reporting",
+      "props": {}
+    },
+    {
+      "id": "sec:time-zones",
+      "type": "Section",
+      "label": "Time and Zones",
+      "props": {}
+    },
+    {
+      "id": "sec:security-audit",
+      "type": "Section",
+      "label": "Security and Audit Log Requirements",
+      "props": {}
+    },
+    {
+      "id": "sec:attributes",
+      "type": "Section",
+      "label": "Event Record Attributes",
+      "props": {}
+    },
+    {
+      "id": "req:001",
+      "type": "Requirement",
+      "label": "REQ-001: Logging Enablement",
+      "props": {
+        "text": "Logging must be enabled to capture activity on all platforms",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:002",
+      "type": "Requirement",
+      "label": "REQ-002: Log Classification",
+      "props": {
+        "text": "Logs must be classified per TECH02.01",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:003",
+      "type": "Requirement",
+      "label": "REQ-003: Retention Period",
+      "props": {
+        "text": "Security and Audit Logs retained for at least 12 months, 3 months online",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:006",
+      "type": "Requirement",
+      "label": "REQ-006: Time Synchronization",
+      "props": {
+        "text": "System clocks must enable time synchronization",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:007",
+      "type": "Requirement",
+      "label": "REQ-007: Timestamp with Timezone",
+      "props": {
+        "text": "Logs must include accurate timestamp with time zone identification",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:009",
+      "type": "Requirement",
+      "label": "REQ-009: Central Repository",
+      "props": {
+        "text": "Logs must be forwarded to a central repository",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:010",
+      "type": "Requirement",
+      "label": "REQ-010: Log Integrity",
+      "props": {
+        "text": "Logs must be protected from unauthorized modification or deletion",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:011",
+      "type": "Requirement",
+      "label": "REQ-011: Access Control",
+      "props": {
+        "text": "Logs must be restricted to authorized users",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "req:013",
+      "type": "Requirement",
+      "label": "REQ-013: Required Attributes",
+      "props": {
+        "text": "Event records must include timestamp, event type, identity, source ID, severity, outcome, session ID, etc.",
+        "mandatory": true
+      }
+    },
+    {
+      "id": "ctrl:central-repo",
+      "type": "Control",
+      "label": "Centralized Logging Repository",
+      "props": {}
+    },
+    {
+      "id": "ctrl:retention-12m",
+      "type": "Control",
+      "label": "12 Month Retention",
+      "props": {}
+    },
+    {
+      "id": "ctrl:immutable",
+      "type": "Control",
+      "label": "Immutable Logs",
+      "props": {}
+    },
+    {
+      "id": "ctrl:timezone",
+      "type": "Control",
+      "label": "Timezone in Timestamps",
+      "props": {}
+    },
+    {
+      "id": "ctrl:attributes",
+      "type": "Control",
+      "label": "Required Log Attributes",
+      "props": {}
+    },
+    {
+      "id": "evid:log-records",
+      "type": "EvidenceType",
+      "label": "Log Records",
+      "props": {}
+    },
+    {
+      "id": "evid:config",
+      "type": "EvidenceType",
+      "label": "Logging Configuration",
+      "props": {}
+    },
+    {
+      "id": "evid:retention-policy",
+      "type": "EvidenceType",
+      "label": "Retention Policy Settings",
+      "props": {}
+    },
+    {
+      "id": "finding:no-timezone",
+      "type": "Finding",
+      "label": "Missing Timezone in Logs",
+      "props": {
+        "severity": "high"
+      }
+    },
+    {
+      "id": "finding:no-central",
+      "type": "Finding",
+      "label": "Not Forwarded to Central Repository",
+      "props": {
+        "severity": "high"
+      }
+    },
+    {
+      "id": "finding:short-retention",
+      "type": "Finding",
+      "label": "Retention < 12 Months",
+      "props": {
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "finding:mutable-logs",
+      "type": "Finding",
+      "label": "Logs Can Be Modified",
+      "props": {
+        "severity": "high"
+      }
+    },
+    {
+      "id": "finding:missing-attrs",
+      "type": "Finding",
+      "label": "Missing Required Attributes",
+      "props": {
+        "severity": "medium"
+      }
+    },
+    {
+      "id": "std:tech02.01",
+      "type": "Standard",
+      "label": "TECH02.01",
+      "props": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:general",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:classification",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:retention",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:monitoring",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:time-zones",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:security-audit",
+      "type": "has_section"
+    },
+    {
+      "from": "doc:tech05.01",
+      "to": "sec:attributes",
+      "type": "has_section"
+    },
+    {
+      "from": "sec:general",
+      "to": "req:001",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:classification",
+      "to": "req:002",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:retention",
+      "to": "req:003",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:time-zones",
+      "to": "req:006",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:time-zones",
+      "to": "req:007",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:security-audit",
+      "to": "req:009",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:security-audit",
+      "to": "req:010",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:security-audit",
+      "to": "req:011",
+      "type": "has_requirement"
+    },
+    {
+      "from": "sec:attributes",
+      "to": "req:013",
+      "type": "has_requirement"
+    },
+    {
+      "from": "req:003",
+      "to": "ctrl:central-repo",
+      "type": "requires"
+    },
+    {
+      "from": "req:003",
+      "to": "ctrl:retention-12m",
+      "type": "requires"
+    },
+    {
+      "from": "req:007",
+      "to": "ctrl:timezone",
+      "type": "requires"
+    },
+    {
+      "from": "req:009",
+      "to": "ctrl:central-repo",
+      "type": "requires"
+    },
+    {
+      "from": "req:010",
+      "to": "ctrl:immutable",
+      "type": "requires"
+    },
+    {
+      "from": "req:013",
+      "to": "ctrl:attributes",
+      "type": "requires"
+    },
+    {
+      "from": "req:001",
+      "to": "evid:log-records",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:003",
+      "to": "evid:retention-policy",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:007",
+      "to": "evid:log-records",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:009",
+      "to": "evid:config",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:010",
+      "to": "evid:config",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:013",
+      "to": "evid:log-records",
+      "type": "evidenced_by"
+    },
+    {
+      "from": "req:007",
+      "to": "finding:no-timezone",
+      "type": "violated_by"
+    },
+    {
+      "from": "req:009",
+      "to": "finding:no-central",
+      "type": "violated_by"
+    },
+    {
+      "from": "req:003",
+      "to": "finding:short-retention",
+      "type": "violated_by"
+    },
+    {
+      "from": "req:010",
+      "to": "finding:mutable-logs",
+      "type": "violated_by"
+    },
+    {
+      "from": "req:013",
+      "to": "finding:missing-attrs",
+      "type": "violated_by"
+    },
+    {
+      "from": "req:002",
+      "to": "std:tech02.01",
+      "type": "supported_by"
+    },
+    {
+      "from": "sec:classification",
+      "to": "std:tech02.01",
+      "type": "mention_in_context"
+    }
+  ]
+}
