@@ -1,5 +1,7 @@
 # GitHub Pages Deployment Guide 🚀
 
+> **⚠️ Build Failing?** If `npm run build` doesn't work, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) first!
+
 ## Quick Deployment (5 minutes)
 
 ### Method 1: Automatic Deployment with GitHub Actions ⚡ (RECOMMENDED)

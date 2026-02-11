@@ -104,6 +104,26 @@ npm run build
 # Deploy the 'out/' directory to GitHub Pages
 ```
 
+### 🔧 Build Issues?
+
+If `npm run build` fails on your machine (but works on another), use the fix scripts:
+
+```bash
+# First, diagnose the issue
+./diagnose.sh
+
+# Then run the fix
+./fix-build.sh
+```
+
+**Common issues:**
+- Different Node.js versions between machines
+- Corrupted `node_modules` directory
+- Old build cache in `.next` directory
+- `NODE_ENV` variable set incorrectly
+
+See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for detailed solutions.
+
 ## 📁 Project Structure
 
 ```
