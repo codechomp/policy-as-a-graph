@@ -210,11 +210,14 @@ export default function POA3Page() {
           </ol>
         </div>
 
-        <div style={{ marginTop: '20px', display: 'flex', gap: '12px' }}>
+        <div style={{ marginTop: '20px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button className="button button-secondary" onClick={() => router.push('/poa2')}>
             ← Back to Deep Dive
           </button>
           <button className="button" onClick={() => router.push('/')}>
+            🚀 View Architecture
+          </button>
+          <button className="button button-secondary" onClick={() => router.push('/pod')}>
             🏠 Return to Attestation Form
           </button>
         </div>

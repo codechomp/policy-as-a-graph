@@ -198,6 +198,10 @@ code {
   .split-view {
     grid-template-columns: 1fr;
   }
+
+  .architecture-layout {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 .violation-card {

@@ -28,13 +28,14 @@ This prototype showcases three innovative approaches to policy compliance:
 
 ## 📋 Features
 
-- ✅ **4 Interactive Pages** following the exact UX design
+- ✅ **5 Interactive Pages** including executive architecture overview
 - ✅ **Real Policy Parsing** from TECH05.01 Logging Management Standard
-- ✅ **Interactive Graph Visualizations** with zoom, pan, filter, and node selection
+- ✅ **Interactive Graph Visualizations** with curved edges, zoom, pan, filter, and node selection
 - ✅ **Galaxy Mode** for full network visualization
 - ✅ **Policy Engine** with OPA/Rego-style rules
 - ✅ **30 Sample Logs** with 12 non-compliant entries
 - ✅ **Detailed Violation Analysis** mapped to specific requirements
+- ✅ **Agent-to-Agent Architecture Diagram** for executive presentations
 - ✅ **Static Site** deployable to GitHub Pages (no backend required)
 
 ## 🏗️ Architecture
@@ -156,6 +157,17 @@ See [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for detailed solutions.
 ```
 
 ## 📖 Usage Guide
+
+### Page Flow
+The application follows this sequence:
+1. **Architecture Page** (landing) → 2. **POD Attestation Form** → 3. **Demo Pages** (POA1, POA2, POA3)
+
+### Page 0: Architecture (Landing Page)
+- Executive-ready 5-layer architecture diagram
+- Agent-to-Agent Policy Intelligence pipeline visualization
+- Comparison: POC Demo vs Production Implementation
+- Key benefits: Continuous Compliance, Intelligent Context, Full Traceability, Zero Manual Work
+- Click "Continue to Attestation Form" to start demo
 
 ### Page 1: POD Attestation Form
 1. Review the application ID (default: 149171081)
