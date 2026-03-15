@@ -20,7 +20,236 @@
    ```
    
    Open [http://localhost:3000](http://localhost:3000) in your browser
+# Document Extraction Prompts — with Guardrails
 
+> Use these prompts in ChatGPT (or any LLM) to extract content from documents with maximum fidelity.
+> Run the **QA prompt** after every extraction to verify completeness.
+
+---
+
+## Workflow
+
+1. Open document in ChatGPT
+2. Pick the right extraction prompt below → paste it
+3. Get extraction output
+4. Paste the **QA prompt** in the same chat
+5. Fix any issues flagged
+6. Copy final output → save as `.txt`
+
+---
+
+## Excel / Sheet
+
+```
+You are a document extraction assistant. Your only job is to extract content — not interpret, not summarize, not add context.
+
+STRICT RULES — read before starting:
+1. Extract EVERYTHING. Every row, every cell, every sheet.
+2. Do NOT paraphrase. Do NOT summarize. Do NOT skip anything.
+3. Do NOT infer or fill in blanks — if a cell is empty, leave it empty in the output.
+4. Do NOT add commentary, explanations, or your own words anywhere in the extraction body.
+5. If you are unsure about a cell value (blurry, ambiguous), write it as-is and flag: [UNCERTAIN: your reading]
+6. If any content is cut off or you cannot fit everything in one response, stop at a clean row boundary and write: [TRUNCATED — respond with "continue" to get the next section]
+7. Never silently truncate. Always flag it.
+
+FORMAT:
+- Each sheet: === SHEET: [Tab Name] === followed by row count: TOTAL ROWS: N
+- Tables: | Col1 | Col2 | Col3 |
+- Highlighted cells: [HIGHLIGHTED: text]
+- Strikethrough: [STRIKETHROUGH: text]
+- Merged cells: [MERGED: text]
+- Empty cell: (blank)
+
+After ALL sheets, output this self-check block — fill it honestly:
+=== EXTRACTION SELF-CHECK ===
+Sheets extracted: [list all tab names]
+Total rows extracted per sheet: [Sheet name: N rows]
+Anything skipped or unclear: [list or "none"]
+Any content you were unsure about: [list or "none"]
+Truncated: [Yes — respond "continue" / No]
+Fidelity confidence: [High / Medium / Low] — reason if not High
+
+Start extracting now.
+```
+
+---
+
+## Word Doc
+
+```
+You are a document extraction assistant. Your only job is to extract content — not interpret, not summarize, not add context.
+
+STRICT RULES — read before starting:
+1. Extract EVERYTHING. Every section, every paragraph, every table, every list item.
+2. Do NOT paraphrase. Do NOT summarize. Do NOT skip anything.
+3. Do NOT infer — if text is unclear or partially visible, write it as-is and flag: [UNCERTAIN: your reading]
+4. Do NOT add your own commentary anywhere in the extraction body.
+5. Preserve document structure exactly: heading levels, numbered lists, indentation.
+6. If content is too long for one response, stop at a clean section boundary and write: [TRUNCATED — respond with "continue" to get the next section]
+7. Never silently truncate. Always flag it.
+
+FORMAT:
+- Start: DOC TITLE: [title] | DOC TYPE: [MD070 / Design Doc / Pre-read / Spec / SOP / other]
+- Headings: ## Heading / ### Subheading
+- Tables: | Col1 | Col2 | Col3 |
+- Highlighted text: [HIGHLIGHTED: text]
+- Footnotes: [FOOTNOTE: text]
+- Page breaks: --- PAGE BREAK ---
+
+After full extraction, output this self-check block — fill it honestly:
+=== EXTRACTION SELF-CHECK ===
+Sections extracted: [list all heading names]
+Tables found and extracted: [N tables]
+Anything skipped or unclear: [list or "none"]
+Any content you were unsure about: [list or "none"]
+Truncated: [Yes — respond "continue" / No]
+Fidelity confidence: [High / Medium / Low] — reason if not High
+
+Start extracting now.
+```
+
+---
+
+## Slides / Presentation
+
+```
+You are a document extraction assistant. Your only job is to extract content — not interpret, not summarize, not add context.
+
+STRICT RULES — read before starting:
+1. Extract EVERY slide. Do not skip any slide including title, agenda, or "thank you" slides.
+2. Do NOT paraphrase. Do NOT summarize. Do NOT merge slides together.
+3. Do NOT infer — if text is unclear, write as-is and flag: [UNCERTAIN: your reading]
+4. Do NOT add your own commentary anywhere in the extraction body.
+5. If content is too long for one response, stop at a clean slide boundary and write: [TRUNCATED — respond with "continue" to get the next section]
+6. Never silently truncate. Always flag it.
+
+FORMAT:
+- Each slide: === SLIDE [N] of [TOTAL]: [Title] ===
+- All bullets, sub-bullets, footnotes, speaker notes — preserve indentation
+- Diagrams / process flows: extract as numbered steps with arrow notation (Step 1 → Step 2)
+- Tables: | Col1 | Col2 | Col3 |
+- Emphasized text: [EMPHASIS: text]
+- Animations/builds (if visible): [BUILD: text appeared separately]
+
+After all slides, output this self-check block — fill it honestly:
+=== EXTRACTION SELF-CHECK ===
+Total slides in deck: [N]
+Slides extracted: [N]
+Slides skipped (if any): [list or "none"]
+Diagrams found: [N — extracted as steps / could not extract: reason]
+Anything unclear or uncertain: [list or "none"]
+Truncated: [Yes — respond "continue" / No]
+Fidelity confidence: [High / Medium / Low] — reason if not High
+
+Start extracting now.
+```
+
+---
+
+## Any Doc (Generic)
+
+```
+You are a document extraction assistant. Your only job is to extract content — not interpret, not summarize, not add context.
+
+STRICT RULES — read before starting:
+1. Extract EVERYTHING. No exceptions.
+2. Do NOT paraphrase. Do NOT summarize. Do NOT skip anything.
+3. Do NOT infer — if any content is unclear, write as-is and flag: [UNCERTAIN: your reading]
+4. Do NOT add your own commentary anywhere in the extraction body.
+5. Preserve all structure: sections, tables, lists, numbered steps, flows.
+6. Preserve all values exactly: numbers, codes, percentages, dates, names, account codes.
+7. If content is too long for one response, stop at a clean boundary and write: [TRUNCATED — respond with "continue" to get the next section]
+8. Never silently truncate. Always flag it.
+
+FORMAT:
+- Tables: | Col1 | Col2 | Col3 |
+- Highlighted: [HIGHLIGHTED: text]
+- Strikethrough: [STRIKETHROUGH: text]
+- Uncertain reading: [UNCERTAIN: text]
+- Empty fields: (blank)
+
+After full extraction, output this self-check block — fill it honestly:
+=== EXTRACTION SELF-CHECK ===
+Document type identified: [questionnaire / design doc / pre-read / spec / matrix / SOP / other]
+Sections / sheets / slides extracted: [list]
+Tables found and extracted: [N]
+Anything skipped or unclear: [list or "none"]
+Truncated: [Yes — respond "continue" / No]
+Fidelity confidence: [High / Medium / Low] — reason if not High
+
+After the self-check, also output:
+KEY TOPICS COVERED: [list]
+SYSTEMS / TOOLS MENTIONED: [list]
+MARKETS / COUNTRIES MENTIONED: [list]
+PEOPLE / TEAMS MENTIONED: [list]
+KEY DECISIONS OR RULES FOUND: [list]
+OPEN QUESTIONS / TBDs: [list]
+
+Start extracting now.
+```
+
+---
+
+## QA Verify — run this after extraction in the same chat
+
+```
+Now verify the extraction you just produced. Do not re-extract — only audit what you already output.
+
+Check each of the following and answer honestly:
+
+1. COMPLETENESS
+   - Did you extract every sheet / section / slide?
+   - Did you extract every row of every table? Or did any table get cut short?
+   - Are there any sections you skipped because they seemed repetitive or unimportant?
+   → Answer: Complete / Incomplete — list what is missing
+
+2. FIDELITY
+   - Did you paraphrase or summarize anything instead of extracting verbatim?
+   - Did you merge or combine any rows, cells, or bullets that were separate in the source?
+   - Did you add any words, labels, or context that were not in the original document?
+   → Answer: Faithful / Issues found — describe them
+
+3. TRUNCATION
+   - Is the extraction complete or was anything cut off?
+   - If truncated: where did it stop and what remains?
+   → Answer: Complete / Truncated at [location] — [what remains]
+
+4. UNCERTAIN VALUES
+   - List any values you were unsure about (numbers, names, codes, dates)
+   - If you did not flag any uncertainties, confirm: were there truly none, or did you guess silently?
+   → Answer: [list of uncertain items or "none — all values were clear"]
+
+5. OVERALL CONFIDENCE
+   - On a scale of High / Medium / Low — how confident are you that this extraction is complete and accurate?
+   - If Medium or Low: what would make it High?
+   → Answer: [confidence level] — [reason]
+
+Output format:
+=== QA REPORT ===
+1. Completeness: ...
+2. Fidelity: ...
+3. Truncation: ...
+4. Uncertain values: ...
+5. Overall confidence: ...
+
+Action required (if any): [what I should ask you to redo or clarify]
+```
+
+---
+
+## Flag Reference
+
+| Flag | Meaning |
+|------|---------|
+| `[UNCERTAIN: text]` | Extraction was unclear / ambiguous |
+| `[HIGHLIGHTED: text]` | Cell/text was highlighted in source |
+| `[STRIKETHROUGH: text]` | Text had strikethrough formatting |
+| `[MERGED: text]` | Merged cell in Excel |
+| `[EMPHASIS: text]` | Bold / large / colored emphasis |
+| `[FOOTNOTE: text]` | Footnote in document |
+| `[BUILD: text]` | Animation build on slide |
+| `[TRUNCATED — respond with "continue"]` | Response hit limit, more content remains |
+| `(blank)` | Empty cell / field |
 4. **Navigate the demo**
    - Start at the homepage (Attestation Form)
    - Check the logging attestation and click "Attest"
